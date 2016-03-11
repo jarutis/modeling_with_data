@@ -1,0 +1,4 @@
+sudo gdb ./bin/main
+backtrace
+info locals
+info args
