@@ -3,13 +3,13 @@
 #include <stdlib.h>
 
 void astrcpy(char **base, char *copyme) {
-  *base = realloc(*base, sizeof(char) * strlen(copyme));
+  *base = realloc(*base, strlen(copyme));
   strcpy(*base, copyme);
 }
 
 void astrcat(char **base, char *copyme) {
   int new_length = strlen(*base) + strlen(copyme);
-  *base = realloc(*base, sizeof(char) * new_length);
+  *base = realloc(*base, new_length);
   strcat(*base, copyme);
 }
 
