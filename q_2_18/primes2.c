@@ -1,0 +1,36 @@
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void add_a_prime(int addme, int *ct, int **primes){
+  *primes = realloc(*primes, sizeof(int) * (*ct + 1));
+  (*primes)[*ct] = addme;
+  (*ct)++;
+}
+
+int main(){
+  int ct =0, i, j, testme = 2, isprime, max = 1000;
+  int *primes = NULL;
+  char *primes_so_far;
+  char *prime_string;
+  asprintf(&primes_so_far, "%s", "");
+
+  for (j = 0; j < max; j++) {
+    isprime = 1;
+    for (i = 0; isprime && i < sqrt(testme) && i < ct; i++) {
+      isprime = testme % primes[i];
+    }
+    if (isprime) {
+      add_a_prime(testme, &ct, &primes);
+    }
+    testme++;
+  }
+  for (i = 0; i < ct; i++) {
+    asprintf(&prime_string, "%i", primes[i]);
+    if (prime_string[strlen(prime_string) - 1] == '7') {
+      asprintf(&primes_so_far, "%s%i\t", primes_so_far, primes[i]);
+    }
+  }
+  printf("%s\n", primes_so_far);
+}
